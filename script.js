@@ -1,13 +1,21 @@
-// Create animated hearts
+// Create animated hearts with random position and size
 function createHearts() {
   const container = document.querySelector('.hearts-container');
-  const heartCount = 19;
+  container.innerHTML = '';
+  const heartCount = 8;
   const hearts = ['❤️', '💕', '💖', '💗', '💝'];
   
   for (let i = 0; i < heartCount; i++) {
     const heart = document.createElement('div');
     heart.classList.add('heart');
     heart.textContent = hearts[Math.floor(Math.random() * hearts.length)];
+    // random horizontal start
+    heart.style.left = Math.random() * 90 + 5 + '%';
+    // random size between 6 and 10rem
+    heart.style.fontSize = (6 + Math.random() * 4) + 'rem';
+    // random animation duration and delay
+    heart.style.animationDuration = (7 + Math.random() * 3) + 's';
+    heart.style.animationDelay = (Math.random() * 5) + 's';
     container.appendChild(heart);
   }
 }
@@ -27,6 +35,18 @@ function nextScreen(number) {
 
   current.classList.remove('active');
   next.classList.add('active');
+
+  // if we navigated to final screen, start audio playback
+  if (number === 4) {
+    const audio = next.querySelector('audio');
+    if (audio) {
+      // try to play; some browsers require a user gesture, but
+      // since navigation is via button click we should be allowed
+      audio.play().catch(() => {
+        // ignore if autoplay blocked; user can hit play manually
+      });
+    }
+  }
 }
 
 // optional: allow arrow keys for navigation
