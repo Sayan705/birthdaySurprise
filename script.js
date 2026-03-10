@@ -62,3 +62,28 @@ window.addEventListener('keydown', (e) => {
     if (prev >= 1) nextScreen(prev);
   }
 });
+
+// launch confetti for a few seconds using canvas-confetti library
+function launchConfetti() {
+  const duration = 5 * 1000;
+  const end = Date.now() + duration;
+
+  (function frame() {
+    confetti({ particleCount: 5, angle: 60, spread: 55, origin: { x: 0 } });
+    confetti({ particleCount: 5, angle: 120, spread: 55, origin: { x: 1 } });
+
+    if (Date.now() < end) {
+      requestAnimationFrame(frame);
+    }
+  }());
+}
+
+// restart the sequence by going back to first screen
+function restart() {
+  nextScreen(1);
+  const audio = document.querySelector('#screen4 audio');
+  if (audio) {
+    audio.currentTime = 0;
+    audio.pause();
+  }
+}
