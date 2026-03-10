@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Birthday Surprise 🌟</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- container holds each "screen" card-->
+  <div id="screen1" class="screen active">
+    <h1>🎂 Happy Birthday, Love! 🎂</h1>
+    <button onclick="nextScreen(2)">Open Your First Gift 🎁</button>
+  </div>
+
+  <div id="screen2" class="screen">
+    <h2>You make my world brighter ✨</h2>
+    <button onclick="nextScreen(3)">Tap for Another Surprise</button>
+  </div>
+
+  <div id="screen3" class="screen">
+    <img src="assets/images/memory.jpg" alt="Memory">
+    <button onclick="nextScreen(4)">Final Gift ❤️</button>
+  </div>
+
+  <div id="screen4" class="screen">
+    <h2>Forever with you 💕</h2>
+    <audio controls autoplay>
+      <source src="assets/music/birthday.mp3" type="audio/mpeg">
+    </audio>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
