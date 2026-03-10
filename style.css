@@ -1,46 +1,105 @@
-/* Elegant birthday surprise styling */
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap');
+/* Modern Romantic Birthday Surprise */
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&family=Playfair+Display:wght@700&display=swap');
 
-html, body {
+* {
   margin: 0;
   padding: 0;
+  box-sizing: border-box;
+}
+
+html, body {
   height: 100%;
   width: 100%;
-  font-family: 'Poppins', sans-serif;
-  background: linear-gradient(135deg, #ff1744 0%, #ff5252 25%, #ff6e40 50%, #ff5252 75%, #ff1744 100%);
+  font-family: 'Montserrat', sans-serif;
+  background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
   background-size: 400% 400%;
-  animation: romanticGradient 15s ease infinite;
+  animation: modernGradient 15s ease infinite;
   color: #333;
   overflow: hidden;
+  position: relative;
 }
 
-@keyframes romanticGradient {
-  0% {background-position: 0% 50%;}
-  50% {background-position: 100% 50%;}
-  100% {background-position: 0% 50%;}
+@keyframes modernGradient {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
 }
 
+/* Animated Background Orbs */
+body::before,
+body::after {
+  content: '';
+  position: fixed;
+  width: 500px;
+  height: 500px;
+  border-radius: 50%;
+  pointer-events: none;
+  filter: blur(80px);
+  opacity: 0.15;
+  z-index: 0;
+}
+
+body::before {
+  top: -200px;
+  right: -200px;
+  background: radial-gradient(circle, #ff6b9d, #c044b8);
+  animation: floatOrb1 20s ease-in-out infinite;
+}
+
+body::after {
+  bottom: -200px;
+  left: -200px;
+  background: radial-gradient(circle, #ffa502, #ff6b9d);
+  animation: floatOrb2 25s ease-in-out infinite;
+}
+
+@keyframes floatOrb1 {
+  0%, 100% { transform: translate(0, 0); }
+  50% { transform: translate(-100px, -100px); }
+}
+
+@keyframes floatOrb2 {
+  0%, 100% { transform: translate(0, 0); }
+  50% { transform: translate(100px, 100px); }
+}
+
+/* Screen Styles */
 .screen {
   position: absolute;
   top: 50%;
   left: 50%;
-  transform: translate(-50%, -50%) scale(0.9);
+  transform: translate(-50%, -50%) scale(0.7);
   opacity: 0;
   visibility: hidden;
   width: 90%;
-  max-width: 400px;
+  max-width: 500px;
   text-align: center;
-  padding: 2rem;
-  border-radius: 1rem;
-  background: rgba(255, 255, 255, 0.8);
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
-  transition: opacity 0.6s ease, transform 0.6s ease;
+  padding: 3.5rem 2.5rem;
+  border-radius: 30px;
+  background: rgba(255, 255, 255, 0.12);
+  backdrop-filter: blur(10px);
+  border: 2px solid rgba(255, 255, 255, 0.2);
+  box-shadow: 0 8px 32px rgba(31, 38, 135, 0.37);
+  transition: all 0.8s cubic-bezier(0.34, 1.56, 0.64, 1);
+  z-index: 10;
 }
 
 .screen.active {
   opacity: 1;
   visibility: visible;
   transform: translate(-50%, -50%) scale(1);
+  animation: screenPop 0.8s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+@keyframes screenPop {
+  0% {
+    transform: translate(-50%, -50%) scale(0.7) rotate(-5deg);
+    opacity: 0;
+  }
+  100% {
+    transform: translate(-50%, -50%) scale(1) rotate(0deg);
+    opacity: 1;
+  }
 }
 
 h1, h2 {
@@ -79,135 +138,136 @@ button:hover {
   box-shadow: 0 4px 15px rgba(0,0,0,0.2);
 }
 
+/* Image Styles */
 img {
   max-width: 100%;
-  border-radius: 0.5rem;
-  box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+  width: 100%;
+  border-radius: 20px;
+  box-shadow: 0 8px 32px rgba(31, 38, 135, 0.37);
+  border: 2px solid rgba(255, 255, 255, 0.2);
+  animation: imageZoom 0.8s cubic-bezier(0.34, 1.56, 0.64, 1);
 }
 
+@keyframes imageZoom {
+  from {
+    opacity: 0;
+    transform: scale(0.9) rotate(-2deg);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) rotate(0deg);
+  }
+}
+
+/* Audio Styles */
 audio {
   width: 100%;
-  margin-top: 1rem;
+  margin-top: 1.5rem;
+  filter: drop-shadow(0 4px 10px rgba(255, 107, 157, 0.3));
 }
 
-/* floating confetti pieces */
-body::before,
-body::after {
-  content: "";
+/* Sparkle Effect */
+.screen.active::before {
+  content: '✨';
   position: absolute;
-  top: -10%;
-  left: -10%;
-  width: 120%;
-  height: 120%;
-  pointer-events: none;
-  background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"><circle cx="10" cy="10" r="3" fill="%23ff5f6d"/></svg>');
-  background-repeat: repeat;
-  opacity: 0.15;
-  animation: confettiFall 8s linear infinite;
+  top: -30px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 2rem;
+  animation: sparkleFloat 2s ease-in-out infinite;
+  opacity: 0;
 }
 
-@keyframes confettiFall {
-  0% {transform: translateY(-100%);}
-  100% {transform: translateY(100%);}
-}
-
-/* Animated Hearts */
+.screen.active::after {
+  content: '✨';
+  position: absolute;
+  bottom: -30px;
+  right: -30px;
+  font-size: 1.5rem;
+  animation: sparkleFloat 2.5s ease-in-out infinite 0.5s;
+  oHearts Container */
 .hearts-container {
   position: fixed;
   top: 0;
   left: 0;
-  width: 100%6rem;
-  opacity: 0.15;
-  animation: heartFloat 6s ease-in infinite;
-  filter: drop-shadow(0 0 10px rgba(233, 30, 99, 0.5));
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  overflow: hidden;
+  z-index: 1;
 }
 
-@keyframes heartFloat {
+/* Large Floating Hearts */
+.heart {
+  position: absolute;
+  font-size: 8rem;
+  opacity: 0.08;
+  animation: floatHearts 8s cubic-bezier(0.25, 0.46, 0.45, 0.94) infinite;
+  filter: drop-shadow(0 8px 16px rgba(255, 107, 157, 0.3));
+  text-shadow: 0 0 30px rgba(233, 30, 99, 0.4);
+}
+
+@keyframes floatHearts {
   0% {
-    transform: translateY(-10vh) translateX(0) scale(0.3) rotate(0deg);
+    transform: translateY(100vh) translateX(0) scale(0.2) rotate(-20deg);
+    opacity: 0;
+  }
+  10% {
+    opacity: 0.1;
+  }
+  50% {
+    opacity: 0.08;
+  }
+  90% {
     opacity: 0.05;
   }
-  10% {
-    opacity: 0.2;
-  }
-  50% {
-    opacity: 0.15;
-  }
   100% {
-    transform: translateY(110vh) translateX(150px) scale(1.2) rotate(10deg
-  10% {
-    opacity: 0.8;
-  }
-  50% {7s; }
-.heart:nth-child(2) { left: 10%; animation-delay: 0.5s; animation-duration: 7.5s; }
-.heart:nth-child(3) { left: 15%; animation-delay: 1s; animation-duration: 8s; }
-.heart:nth-child(4) { left: 20%; animation-delay: 1.5s; animation-duration: 7.2s; }
-.heart:nth-child(5) { left: 25%; animation-delay: 2s; animation-duration: 7.8s; }
-.heart:nth-child(6) { left: 30%; animation-delay: 0.2s; animation-duration: 7.3s; }
-.heart:nth-child(7) { left: 35%; animation-delay: 0.8s; animation-duration: 7.9s; }
-.heart:nth-child(8) { left: 40%; animation-delay: 1.3s; animation-duration: 7.1s; }
-.heart:nth-child(9) { left: 45%; animation-delay: 1.8s; animation-duration: 7.6s; }
-.heart:nth-child(10) { left: 50%; animation-delay: 0.3s; animation-duration: 8.2s; }
-.heart:nth-child(11) { left: 55%; animation-delay: 0.9s; animation-duration: 7.4s; }
-.heart:nth-child(12) { left: 60%; animation-delay: 1.4s; animation-duration: 7.7s; }
-.heart:nth-child(13) { left: 65%; animation-delay: 2.1s; animation-duration: 7.5s; }
-.heart:nth-child(14) { left: 70%; animation-delay: 0.6s; animation-duration: 8s; }
-.heart:nth-child(15) { left: 75%; animation-delay: 1.1s; animation-duration: 7.8s; }
-.heart:nth-child(16) { left: 80%; animation-delay: 1.6s; animation-duration: 7.2s; }
-.heart:nth-child(17) { left: 85%; animation-delay: 0.4s; animation-duration: 7.9s; }
-.heart:nth-child(18) { left: 90%; animation-delay: 1.2s; animation-duration: 7.6s; }
-.heart:nth-child(19) { left: 95%; animation-delay: 1.9s; animation-duration: 7.3s; }
-
-/* Romantic Animation Effects */
-@keyframes romanticPulse {
-  0% { transform: scale(1); }
-  50% { transform: scale(1.05); }
-  100% { transform: scale(1); }
-}
-
-@keyframes slideInDown {
-  from {
+    transform: translateY(-100vh) translateX(200px) scale(1) rotate(20deg);
     opacity: 0;
-    transform: translateY(-30px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
   }
 }
 
-@keyframes slideInUp {
-  from {
-    opacity: 0;
-    transform: translateY(30px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
+.heart:nth-child(1) { left: 5%; animation-delay: 0s; animation-duration: 9s; }
+.heart:nth-child(2) { left: 10%; animation-delay: 1s; animation-duration: 10s; }
+.heart:nth-child(3) { left: 15%; animation-delay: 2s; animation-duration: 9.5s; }
+.heart:nth-child(4) { left: 20%; animation-delay: 0.5s; animation-duration: 10.5s; }
+.heart:nth-child(5) { left: 25%; animation-delay: 1.5s; animation-duration: 9s; }
+.heart:nth-child(6) { left: 30%; animation-delay: 2.5s; animation-duration: 10s; }
+.heart:nth-child(7) { left: 35%; animation-delay: 0.3s; animation-duration: 9.8s; }
+.heart:nth-child(8) { left: 40%; animation-delay: 1.3s; animation-duration: 10.3s; }
+.heart:nth-child(9) { left: 45%; animation-delay: 2.2s; animation-duration: 9.2s; }
+.heart:nth-child(10) { left: 50%; animation-delay: 0.8s; animation-duration: 10.1s; }
+.heart:nth-child(11) { left: 55%; animation-delay: 1.8s; animation-duration: 9.7s; }
+.heart:nth-child(12) { left: 60%; animation-delay: 2.1s; animation-duration: 10.2s; }
+.heart:nth-child(13) { left: 65%; animation-delay: 0.6s; animation-duration: 9.4s; }
+.heart:nth-child(14) { left: 70%; animation-delay: 1.6s; animation-duration: 10.4s; }
+.heart:nth-child(15) { left: 75%; animation-delay: 2.3s; animation-duration: 9.9s; }
+.heart:nth-child(16) { left: 80%; animation-delay: 0.9s; animation-duration: 10s; }
+.heart:nth-child(17) { left: 85%; animation-delay: 1.9s; animation-duration: 9.6s; }
+.heart:nth-child(18) { left: 90%; animation-delay: 2.4s; animation-duration: 10.5s; }
+.heart:nth-child(19) { left: 95%; animation-delay: 0.4s; animation-duration: 9.3s; }
 
-@keyframes float {
-  0%, 100% {
-    transform: translateY(0px);
+/* Responsive */
+@media (max-width: 600px) {
+  .screen {
+    max-width: 95%;
+    padding: 2.5rem 1.5rem;
   }
-  50% {
-    transform: translateY(-10px);
+  
+  h1 {
+    font-size: 1.5rem;
+  }
+  
+  h2 {
+    font-size: 1.3rem;
+  }
+  
+  button {
+    padding: 0.8rem 2rem;
+    font-size: 0.95rem;
+  }
+  
+  .heart {
+    font-size: 5rem;
   }
 }
-
-@keyframes heartbeatButton {
-  0%, 100% { transform: scale(1); }
-  25% { transform: scale(1.1); }
-  50% { transform: scale(1); }
-  75% { transform: scale(1.1); }
-}
-.heart:nth-child(11) { left: 55%; animation-delay: 0.9s; animation-duration: 3.6s; }
-.heart:nth-child(12) { left: 60%; animation-delay: 1.4s; animation-duration: 3.9s; }
-.heart:nth-child(13) { left: 65%; animation-delay: 2.1s; animation-duration: 3.7s; }
-.heart:nth-child(14) { left: 70%; animation-delay: 0.6s; animation-duration: 4s; }
-.heart:nth-child(15) { left: 75%; animation-delay: 1.1s; animation-duration: 3.8s; }
-.heart:nth-child(16) { left: 80%; animation-delay: 1.6s; animation-duration: 3.5s; }
-.heart:nth-child(17) { left: 85%; animation-delay: 0.4s; animation-duration: 4.1s; }
-.heart:nth-child(18) { left: 90%; animation-delay: 1.2s; animation-duration: 3.9s; }
-.heart:nth-child(19) { left: 95%; animation-delay: 1.9s; animation-duration: 3.6s; }
