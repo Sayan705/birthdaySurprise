@@ -201,10 +201,10 @@ audio {
 .heart {
   position: absolute;
   font-size: 8rem;
-  opacity: 0.08;
+  opacity: 0.15;
   animation: floatHearts 8s cubic-bezier(0.25, 0.46, 0.45, 0.94) infinite;
-  filter: drop-shadow(0 8px 16px rgba(255, 107, 157, 0.3));
-  text-shadow: 0 0 30px rgba(233, 30, 99, 0.4);
+  filter: drop-shadow(0 8px 16px rgba(255, 107, 157, 0.4));
+  text-shadow: 0 0 30px rgba(233, 30, 99, 0.5);
 }
 
 @keyframes floatHearts {
@@ -213,13 +213,13 @@ audio {
     opacity: 0;
   }
   10% {
-    opacity: 0.1;
+    opacity: 0.2;
   }
   50% {
-    opacity: 0.08;
+    opacity: 0.15;
   }
   90% {
-    opacity: 0.05;
+    opacity: 0.08;
   }
   100% {
     transform: translateY(-100vh) translateX(200px) scale(1) rotate(20deg);
