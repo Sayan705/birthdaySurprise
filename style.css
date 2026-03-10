@@ -14,7 +14,7 @@ html, body {
   /* romantic background photo with gradient overlay */
   background: 
     linear-gradient(-45deg, rgba(238,119,82,0.6), rgba(231,60,126,0.6), rgba(35,166,213,0.6), rgba(35,213,171,0.6)),
-    url('https://images.pexels.com/photos/7099953/pexels-photo-7099953.jpeg') no-repeat center center fixed;
+    url('assets/pexels-vlada-karpovich-7099953.jpg') no-repeat center center fixed;
   background-size: cover;
   animation: modernGradient 15s ease infinite;
   color: #001f3f; /* dark blue text color */
