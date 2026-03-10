@@ -1,3 +1,24 @@
+// Create animated hearts
+function createHearts() {
+  const container = document.querySelector('.hearts-container');
+  const heartCount = 19;
+  const hearts = ['❤️', '💕', '💖', '💗', '💝'];
+  
+  for (let i = 0; i < heartCount; i++) {
+    const heart = document.createElement('div');
+    heart.classList.add('heart');
+    heart.textContent = hearts[Math.floor(Math.random() * hearts.length)];
+    container.appendChild(heart);
+  }
+}
+
+// Initialize hearts on page load
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', createHearts);
+} else {
+  createHearts();
+}
+
 // navigation between screens with fade effect
 function nextScreen(number) {
   const current = document.querySelector('.screen.active');
